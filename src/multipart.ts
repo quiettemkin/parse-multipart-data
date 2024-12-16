@@ -187,9 +187,9 @@ function process(part: Part): Input {
       configurable: true
     })
   }
-  // always process the name field
-  Object.defineProperty(input, 'name', {
-    value: header[1].split('=')[1].replace(/"/g, ''),
+  // process the name field
+  if (header && header.length > 1) Object.defineProperty(input, 'name', {
+    value: (header[1].split('=')[1] || '').replace(/"/g, ''),
     writable: true,
     enumerable: true,
     configurable: true
